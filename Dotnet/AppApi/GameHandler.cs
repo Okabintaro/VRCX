@@ -15,7 +15,7 @@ namespace VRCX
 
             CheckGameRunning();
         }
-        
+
         /// <summary>
         /// Checks if the VRChat game and SteamVR are currently running and updates the browser's JavaScript function $app.updateIsGameRunning with the results.
         /// </summary>
@@ -34,13 +34,13 @@ namespace VRCX
                 isSteamVRRunning = true;
             }
 
-            var isHmdAfk = VRCXVR.Instance.IsHmdAfk;
+            var isHmdAfk = false;
 
             // TODO: fix this throwing an exception for being called before the browser is ready. somehow it gets past the checks
             if (MainForm.Instance?.Browser != null && !MainForm.Instance.Browser.IsLoading && MainForm.Instance.Browser.CanExecuteJavascriptInMainFrame)
                 MainForm.Instance.Browser.ExecuteScriptAsync("$app.updateIsGameRunning", isGameRunning, isSteamVRRunning, isHmdAfk);
         }
-        
+
         /// <summary>
         /// Kills the VRChat process if it is currently running.
         /// </summary>
